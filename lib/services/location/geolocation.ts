@@ -3,6 +3,7 @@ import { locationData } from "@/lib/context/locationContext";
 class GeolocationService {
   async getCurrentLocation() {
     return new Promise<locationData>((resolve, reject) => {
+      console.log('getting location.')
       if (!navigator.geolocation) {
         reject(new Error('Geolocation not supported'));
         return;
@@ -25,7 +26,6 @@ class GeolocationService {
             3: 'Location request timed out'
           };
           reject(new Error(errorMessages[error.code] || 'Unknown location error'));
-          console.error(errorMessages[error.code])
         },
         {
           enableHighAccuracy: true,
@@ -51,6 +51,7 @@ class GeolocationService {
         region: data.principalSubdivision
       };
     } catch (error) {
+      console.error(error);
       throw new Error('Unable to detect city from coordinates');
     }
   }

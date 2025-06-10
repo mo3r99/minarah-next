@@ -9,8 +9,7 @@ import {
   useState,
 } from "react";
 import { storageService } from "../services/storage/storageService";
-import { geolocationService } from "../services/location/geolocation";
-import Modal from "@/components/ui/modal";
+// import { geolocationService } from "../services/location/geolocation";
 import GetLocation from "@/components/location/GetLocation";
 
 export interface locationData {

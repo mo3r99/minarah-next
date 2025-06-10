@@ -1,7 +1,13 @@
+import { prayerType } from "@/lib/context/prayerTimeContext";
+
 class PrayerTimesAPI {
-  async getPrayerTimes(latitude:number, longitude:number) {
-    const data = {
+  async getPrayerTimes(latitude?:number, longitude?:number) {
+    console.log(latitude, longitude);
+
+    console.log('getting prayer times.')
+    const data: prayerType = {
         fajr: '04:00',
+        sunrise: '04:40',
         zuhr: '13:14',
         asr: '18:45',
         maghrib: '21:41',
@@ -16,20 +22,20 @@ class PrayerTimesAPI {
   }
 
   // Transform API response to component-friendly format
-  transformPrayerData(apiData:any) {
-    return {
-      date: apiData.date,
-      city: apiData.city.name,
-      prayers: {
-        fajr: apiData.fajr,
-        sunrise: apiData.sunrise,
-        dhuhr: apiData.dhuhr,
-        asr: apiData.asr,
-        maghrib: apiData.maghrib,
-        isha: apiData.isha
-      },
-    };
-  }
+  // transformPrayerData(apiData) {
+  //   return {
+  //     date: apiData.date,
+  //     city: apiData.city.name,
+  //     prayers: {
+  //       fajr: apiData.fajr,
+  //       sunrise: apiData.sunrise,
+  //       dhuhr: apiData.dhuhr,
+  //       asr: apiData.asr,
+  //       maghrib: apiData.maghrib,
+  //       isha: apiData.isha
+  //     },
+  //   };
+  // }
 
   getAuthToken() {
     return localStorage.getItem('authToken');

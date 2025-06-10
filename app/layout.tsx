@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Figtree } from "next/font/google";
+import { Figtree } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header/Header";
 import NavMenu from "@/components/layout/NavMenu/NavMenu";
@@ -25,7 +25,9 @@ export default function RootLayout({
       <body className={`${figTree.variable} antialiased`}>
         <Providers>
           <Header />
-          {children}
+          <div className="md:ml-20">
+            {children}
+          </div>
           <NavMenu />
         </Providers>
       </body>

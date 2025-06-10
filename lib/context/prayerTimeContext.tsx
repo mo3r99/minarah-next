@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   useState,
@@ -6,20 +6,24 @@ import {
   ReactNode,
   Dispatch,
   SetStateAction,
+  useContext,
+  useEffect,
 } from "react";
+import { LocationContext } from "./locationContext";
+import { prayerTimesApi } from "../services/calculations/prayerTimesApi";
 
-type prayerContext = {
+export interface prayerType {
   fajr: string;
   sunrise: string;
   zuhr: string;
   asr: string;
   maghrib: string;
   isha: string;
-};
+}
 
 type prayerTimesContextType = {
-  prayerTimes: prayerContext;
-  setPrayerTimes: Dispatch<SetStateAction<prayerContext>>;
+  prayerTimes: prayerType;
+  setPrayerTimes: Dispatch<SetStateAction<prayerType>>;
 };
 export const PrayerTimeContext = createContext<prayerTimesContextType>({
   prayerTimes: {
@@ -42,6 +46,24 @@ export function PrayerTimesProvider({ children }: { children: ReactNode }) {
     maghrib: "",
     isha: "",
   });
+
+  const { location } = useContext(LocationContext);
+
+  useEffect(() => {
+    prayerTimesApi
+      .getPrayerTimes(location.latitude, location.longitude)
+      .then((times) => {
+        if (
+          times.fajr &&
+          times.zuhr &&
+          times.asr &&
+          times.maghrib &&
+          times.isha
+        ) {
+          setPrayerTimes(times);
+        }
+      });
+  }, [location]);
 
   return (
     <PrayerTimeContext.Provider value={{ prayerTimes, setPrayerTimes }}>

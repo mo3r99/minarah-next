@@ -1,10 +1,11 @@
 import { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
-export default function Modal({className, children, action, title, buttonText}:{className?: string | null, children: ReactNode, title: string, action: Function, buttonText: string}) {
+export default function Modal({className, children, action, title, buttonText}:{className?: string | null, children: ReactNode, title: string, action: () => void, buttonText: string}) {
     return (
-        <div className="fixed inset-0 bg-opacity-50 flex items-center justify-center w-[80vw] max-w-xl mx-auto">
+        <div className={cn("fixed inset-0 bg-opacity-50 flex items-center justify-center w-[80vw] max-w-xl mx-auto", className)}>
           <Card>
             <CardHeader>
               <CardTitle>{title}</CardTitle>

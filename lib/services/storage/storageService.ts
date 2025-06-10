@@ -34,7 +34,7 @@ function deepMergePreferences(
 }
 
 // Utility function to validate loaded preferences
-function isValidPreferences(obj: any): obj is Preferences {
+function isValidPreferences(obj:Preferences): obj is Preferences {
   if (typeof obj !== "object" || obj === null) return false;
   if (typeof obj.calculationMethod !== "string") return false;
   if (typeof obj.timeFormat !== "string") return false;
@@ -85,6 +85,7 @@ class PreferencesService {
   }
 
   getPreferences(): Preferences {
+    console.log('getting preferences.')
     try {
       const stored = localStorage.getItem(this.storageKey);
       if (!stored) {
