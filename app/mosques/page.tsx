@@ -1,5 +1,5 @@
 export default function CongregationPage() {
     return (
-        <h1>Congregation</h1>
+        <h1>Mosques</h1>
     )
 }

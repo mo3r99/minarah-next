@@ -1,14 +1,11 @@
-import { prayerType } from "@/lib/context/prayerTimeContext";
+import { PrayerStartTimes } from "@/types";
 
 class PrayerTimesAPI {
   async getPrayerTimes(latitude?:number, longitude?:number) {
-    console.log(latitude, longitude);
-
-    console.log('getting prayer times.')
-    const data: prayerType = {
+    const data: PrayerStartTimes = {
         fajr: '04:00',
         sunrise: '04:40',
-        zuhr: '13:14',
+        dhuhr: '13:14',
         asr: '18:45',
         maghrib: '21:41',
         isha: '00:45',

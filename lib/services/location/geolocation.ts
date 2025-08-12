@@ -1,11 +1,12 @@
-import { locationData } from "@/lib/context/locationContext";
+import { Coordinates, GoogleGeocodingResponse, Location } from "@/types";
+import { env } from "node:process";
 
 class GeolocationService {
   async getCurrentLocation() {
-    return new Promise<locationData>((resolve, reject) => {
-      console.log('getting location.')
+    return new Promise<Coordinates>((resolve, reject) => {
+      console.log("getting location.");
       if (!navigator.geolocation) {
-        reject(new Error('Geolocation not supported'));
+        reject(new Error("Geolocation not supported"));
         return;
       }
 
@@ -15,44 +16,54 @@ class GeolocationService {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
             accuracy: position.coords.accuracy,
-            city: '',
-            address: ''
           });
         },
         (error) => {
           const errorMessages: { [key: number]: string } = {
-            1: 'Location access denied by user',
-            2: 'Location information unavailable',
-            3: 'Location request timed out'
+            1: "Location access denied by user",
+            2: "Location information unavailable",
+            3: "Location request timed out",
           };
-          reject(new Error(errorMessages[error.code] || 'Unknown location error'));
+          reject(
+            new Error(errorMessages[error.code] || "Unknown location error")
+          );
         },
         {
           enableHighAccuracy: true,
           timeout: 10000,
-          maximumAge: 300000 // 5 minutes
+          maximumAge: 300000, // 5 minutes
         }
       );
     });
   }
 
-  async detectCity(latitude:number, longitude:number) {
+  async detectCity(
+    latitude: number,
+    longitude: number,
+    accuracy: number
+  ): Promise<Location> {
     try {
       // Use reverse geocoding service
-      const response = await fetch(
-        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
-      );
-      
-      const data = await response.json();
-      
+      const apirequest = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.NEXT_PUBLIC_MAPS_API_KEY}`;
+      const response = await fetch(apirequest);
+
+      const data: GoogleGeocodingResponse = await response.json();
+
+      // console.log((await data).results[0].formatted_address);
+
       return {
-        city: data.city || data.locality,
-        country: data.countryName,
-        region: data.principalSubdivision
+        coordinates: {
+          latitude,
+          longitude,
+          accuracy,
+        },
+        city: (data).results[0].address_components[2].long_name,
+        country: (data).results[0].address_components[4].long_name,
+        address: (data).results[0].formatted_address,
       };
     } catch (error) {
       console.error(error);
-      throw new Error('Unable to detect city from coordinates');
+      throw new Error("Unable to detect city from coordinates");
     }
   }
 }

@@ -4,6 +4,7 @@ import {
   CalendarDays,
   HomeIcon,
   LucideIcon,
+  School,
   Settings,
   Users,
 } from "lucide-react";
@@ -12,7 +13,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactElement } from "react";
 
-type Icons = "home" | "settings" | "jamaah" | "calendar";
+type Icons = "home" | "settings" | "mosques" | "calendar";
 
 export default function NavMenuItem({ icon }: { icon: Icons }) {
   const pathname = usePathname();
@@ -30,9 +31,9 @@ export default function NavMenuItem({ icon }: { icon: Icons }) {
       iconElement = <Settings strokeWidth={active ? 2 : 1.5} />;
       iconText = "Settings";
       break;
-    case "jamaah":
-      iconElement = <Users strokeWidth={active ? 2 : 1.5} />;
-      iconText = "Congregation";
+    case "mosques":
+      iconElement = <School strokeWidth={active ? 2 : 1.5} />;
+      iconText = "Mosques";
       break;
     case "calendar":
       iconElement = <CalendarDays strokeWidth={active ? 2 : 1.5} />;

@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 
 export default function Modal({className, children, action, title, buttonText}:{className?: string | null, children: ReactNode, title: string, action: () => void, buttonText: string}) {
     return (
@@ -11,9 +11,9 @@ export default function Modal({className, children, action, title, buttonText}:{
               <CardTitle>{title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>
+              <div>
                 {children}
-              </p>
+              </div>
             </CardContent>
             <CardFooter>
                 <Button className="cursor-pointer" onClick={() => {action()}}>

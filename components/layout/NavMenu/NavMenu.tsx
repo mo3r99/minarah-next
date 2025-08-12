@@ -15,7 +15,7 @@ export default function NavMenu() {
     >
       <ul className="flex md:flex-col justify-around md:justify-start md:gap-8 items-center py-2 md:py-4 md:h-full">
         <NavMenuItem icon="home" />
-        <NavMenuItem icon="jamaah" />
+        <NavMenuItem icon="mosques" />
         <NavMenuItem icon="calendar" />
         <NavMenuItem icon="settings" />
       </ul>

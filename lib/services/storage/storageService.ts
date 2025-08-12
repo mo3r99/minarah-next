@@ -1,19 +1,5 @@
-import { locationData } from "@/lib/context/locationContext";
-
-interface Notifications {
-  enabled: boolean;
-  beforeMinutes: number;
-}
-
-interface Preferences {
-  calculationMethod: string;
-  timeFormat: string;
-  location: locationData;
-  notifications: Notifications;
-  theme: string;
-  language: string;
-  default: boolean;
-}
+import { Location, Preferences } from "@/types";
+import { access } from "fs";
 
 function deepMergePreferences(
   defaults: Preferences,
@@ -34,16 +20,18 @@ function deepMergePreferences(
 }
 
 // Utility function to validate loaded preferences
-function isValidPreferences(obj:Preferences): obj is Preferences {
+function isValidPreferences(obj: Preferences): obj is Preferences {
   if (typeof obj !== "object" || obj === null) return false;
   if (typeof obj.calculationMethod !== "string") return false;
   if (typeof obj.timeFormat !== "string") return false;
   if (
     !obj.location ||
-    typeof obj.location.latitude !== "number" ||
-    typeof obj.location.longitude !== "number" ||
+    typeof obj.location.coordinates.latitude !== "number" ||
+    typeof obj.location.coordinates.longitude !== "number" ||
     typeof obj.location.city !== "string" ||
-    typeof obj.location.address !== "string"
+    typeof obj.location.address !== "string" ||
+    typeof obj.location.country !== "string" ||
+    typeof obj.location.timezone !== "string"
   )
     return false;
   if (
@@ -55,6 +43,7 @@ function isValidPreferences(obj:Preferences): obj is Preferences {
   if (typeof obj.theme !== "string") return false;
   if (typeof obj.language !== "string") return false;
   if (typeof obj.default !== "boolean") return false;
+  if (typeof obj.showOnboarding !== "boolean") return false;
   return true;
 }
 
@@ -68,11 +57,15 @@ class PreferencesService {
       calculationMethod: "ISNA",
       timeFormat: "12h",
       location: {
-        latitude: 0,
-        longitude: 0,
-        accuracy: 0,
+        coordinates: {
+          latitude: 0,
+          longitude: 0,
+          accuracy: 0,
+        },
         city: "",
         address: "",
+        country: "",
+        timezone: "",
       },
       notifications: {
         enabled: false,
@@ -81,21 +74,21 @@ class PreferencesService {
       theme: "auto",
       language: "en",
       default: true,
+      showOnboarding: true,
     };
   }
 
   getPreferences(): Preferences {
-    console.log('getting preferences.')
     try {
       const stored = localStorage.getItem(this.storageKey);
       if (!stored) {
-        this.savePreferences(this.defaults, true)
+        this.savePreferences(this.defaults, true);
         return this.defaults;
       }
 
       const parsed = JSON.parse(stored);
       if (!isValidPreferences(parsed)) {
-        console.warn("Inalid stored preferences. Reverting to defaults.");
+        console.warn("Invalid stored preferences. Reverting to defaults.");
         this.savePreferences(this.defaults, true);
         return this.defaults;
       }
@@ -107,7 +100,10 @@ class PreferencesService {
     }
   }
 
-  savePreferences(preferences: Partial<Preferences>, isDefault=false): Preferences {
+  savePreferences(
+    preferences: Partial<Preferences>,
+    isDefault = false
+  ): Preferences {
     try {
       const current = isDefault ? this.defaults : this.getPreferences();
       const updated = deepMergePreferences(current, preferences);
@@ -125,6 +121,53 @@ class PreferencesService {
     localStorage.removeItem(this.storageKey);
     return this.defaults;
   }
+
+  setDefaultPreferences(): Preferences {
+    try {
+      const stored = localStorage.getItem(this.storageKey);
+      if (!stored) {
+        this.savePreferences(this.defaults, true);
+        return this.defaults;
+      }
+
+      const parsed = JSON.parse(stored);
+
+      parsed.default = true;
+      localStorage.setItem(this.storageKey, JSON.stringify(parsed));
+      return parsed;
+    } catch (err) {
+      console.warn(err);
+      throw new Error("Unable to set default key in preferences!")
+    }
+  }
+
+  // saveLocation(location: Location) {
+  //   console.log('updating location to ', location)
+  //   try {
+  //     const current = this.getPreferences();
+  //     const updated = {
+  //       ...current,
+  //       default: false,
+  //       location: {
+  //         coordinates: {
+  //           latitude: location.coordinates.latitude,
+  //           longitude: location.coordinates.longitude,
+  //           accuracy: location.coordinates.accuracy,
+  //         },
+  //         address: location.address ? location.address : '',
+  //         city: location.city,
+  //         country: location.country ? location.country : "",
+  //         timezone: location.timezone ? location.timezone : "",
+  //       },
+  //     };
+
+  //     localStorage.setItem(this.storageKey, JSON.stringify(updated));
+  //     return updated;
+  //   } catch (error) {
+  //     console.error("Unable to save location preferences", error);
+  //     throw new Error("Unable to save preferences");
+  //   }
+  // }
 }
 
 export const storageService = new PreferencesService();

@@ -11,25 +11,17 @@ import {
 } from "react";
 import { LocationContext } from "./locationContext";
 import { prayerTimesApi } from "../services/calculations/prayerTimesApi";
-
-export interface prayerType {
-  fajr: string;
-  sunrise: string;
-  zuhr: string;
-  asr: string;
-  maghrib: string;
-  isha: string;
-}
+import { PrayerStartTimes } from "@/types";
 
 type prayerTimesContextType = {
-  prayerTimes: prayerType;
-  setPrayerTimes: Dispatch<SetStateAction<prayerType>>;
+  prayerTimes: PrayerStartTimes;
+  setPrayerTimes: Dispatch<SetStateAction<PrayerStartTimes>>;
 };
 export const PrayerTimeContext = createContext<prayerTimesContextType>({
   prayerTimes: {
     fajr: "",
     sunrise: "",
-    zuhr: "",
+    dhuhr: "",
     asr: "",
     maghrib: "",
     isha: "",
@@ -38,10 +30,10 @@ export const PrayerTimeContext = createContext<prayerTimesContextType>({
 });
 
 export function PrayerTimesProvider({ children }: { children: ReactNode }) {
-  const [prayerTimes, setPrayerTimes] = useState({
+  const [prayerTimes, setPrayerTimes] = useState<PrayerStartTimes>({
     fajr: "",
     sunrise: "",
-    zuhr: "",
+    dhuhr: "",
     asr: "",
     maghrib: "",
     isha: "",
@@ -51,11 +43,11 @@ export function PrayerTimesProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     prayerTimesApi
-      .getPrayerTimes(location.latitude, location.longitude)
+      .getPrayerTimes(location.coordinates.latitude, location.coordinates.longitude)
       .then((times) => {
         if (
           times.fajr &&
-          times.zuhr &&
+          times.dhuhr &&
           times.asr &&
           times.maghrib &&
           times.isha
