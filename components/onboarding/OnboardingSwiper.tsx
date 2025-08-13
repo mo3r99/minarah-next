@@ -1,4 +1,3 @@
-import { Button } from "../ui/button";
 import EndSlide from "./SwiperSlides/EndSlide";
 import IntroSlide from "./SwiperSlides/IntroSlide";
 import LocationSlide from "./SwiperSlides/LocationSlide";

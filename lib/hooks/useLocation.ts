@@ -19,7 +19,7 @@ export default function useLocation() {
     setLoading(true);
 
     try {
-      let coords: Coordinates = await geolocationService.getCurrentLocation();
+      const coords: Coordinates = await geolocationService.getCurrentLocation();
       if (
         coords.latitude &&
         coords.latitude != 0 &&

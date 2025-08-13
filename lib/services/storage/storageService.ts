@@ -1,5 +1,4 @@
-import { Location, Preferences } from "@/types";
-import { access } from "fs";
+import { Preferences } from "@/types";
 
 function deepMergePreferences(
   defaults: Preferences,

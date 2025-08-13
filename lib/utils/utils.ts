@@ -10,7 +10,7 @@ const [hours, minutes] = ((remainingTime || 0) / 60).toString().split('.');
   const formattedHours = parseInt(hours);
   const formattedMinutes = Math.round(((parseFloat(`0.${minutes || '0'}`) * 60)));
 
-  var timeString = {
+  const timeString = {
     prayer: `${nextPrayerName?.substring(0,1).toUpperCase()}${nextPrayerName?.substring(1)}`,
     hours: '',
     and: '',

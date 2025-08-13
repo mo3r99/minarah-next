@@ -9,8 +9,6 @@ import {
   useState,
 } from "react";
 import { storageService } from "../services/storage/storageService";
-// import { geolocationService } from "../services/location/geolocation";
-import GetLocation from "@/components/location/GetLocation";
 import { Location, Preferences } from "@/types";
 
 type locationContextType = {

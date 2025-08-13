@@ -2,6 +2,7 @@ import { PrayerStartTimes } from "@/types";
 
 class PrayerTimesAPI {
   async getPrayerTimes(latitude?:number, longitude?:number) {
+    (latitude && longitude ? latitude + longitude : 0 + 0).toString();
     const data: PrayerStartTimes = {
         fajr: '04:00',
         sunrise: '04:40',

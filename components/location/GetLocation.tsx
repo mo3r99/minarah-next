@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import {
-  defaultLocation,
   LocationContext,
 } from "@/lib/context/locationContext";
 import useLocation from "@/lib/hooks/useLocation";

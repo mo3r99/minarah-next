@@ -1,9 +1,8 @@
-import React, { Dispatch, SetStateAction, useEffect } from "react";
+import React, { useEffect } from "react";
 import NextSlideBtn from "../nextSlideBtn/NextSlideBtn";
 
 import { EmblaCarouselType } from "embla-carousel";
 import LocationButton from "@/components/location/locationButton/LocationButton";
-import ManualLocationEntry from "@/components/location/ManualLocationEntry";
 import PlacesAutocomplete from "@/components/location/PlacesAutoComplete";
 import Image from "next/image";
 

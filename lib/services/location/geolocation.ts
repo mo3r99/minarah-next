@@ -1,5 +1,4 @@
 import { Coordinates, GoogleGeocodingResponse, Location } from "@/types";
-import { env } from "node:process";
 
 class GeolocationService {
   async getCurrentLocation() {

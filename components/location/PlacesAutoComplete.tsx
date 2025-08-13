@@ -23,7 +23,7 @@ const PlacesAutocomplete = () => {
   const [blur, setBlur] = useState(true);
   const [predictionsShowing, setPredictionsShowing] = useState(false);
 
-  const { location, setLocation } = useContext(LocationContext);
+  const { setLocation } = useContext(LocationContext);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,7 +36,7 @@ const PlacesAutocomplete = () => {
   useEffect(() => {
     setLoading(true);
     const timeoutId = setTimeout(() => {
-      const predictionsResult = searchPlaces(input)
+      searchPlaces(input)
         .then((data) => {
           setPredictions(data ? data : []);
         })

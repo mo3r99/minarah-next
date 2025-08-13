@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { storageService } from "../services/storage/storageService";
 import OnboardingSwiper from "@/components/onboarding/OnboardingSwiper";
 

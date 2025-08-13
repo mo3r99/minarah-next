@@ -5,7 +5,6 @@ import NextSlideBtn from "../nextSlideBtn/NextSlideBtn";
 import { EmblaCarouselType } from 'embla-carousel'
 import slide1img from "@/assets/onboarding/slide1alt1.png";
 
-import { UseEmblaCarouselType } from "embla-carousel-react";
 export default function IntroSlide({api}:{api: EmblaCarouselType | undefined}) {
   return (
     <div className="embla__slide flex flex-col items-center justify-center p-8 text-center">
