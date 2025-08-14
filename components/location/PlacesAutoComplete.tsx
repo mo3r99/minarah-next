@@ -85,13 +85,13 @@ const PlacesAutocomplete = ({...props}) => {
             onBlur={() => setBlur(true)}
             onFocus={() => setBlur(false)}
             placeholder="Search for places..."
-            className="w-[250px] px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+            className="w-[250px] px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent outline-none"
           />
         )}
 
         {loading && (
           <div className="absolute right-3 top-3">
-            <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full"></div>
+            <div className="animate-spin h-4 w-4 border-2 border-[var(--primary)] border-t-transparent rounded-full"></div>
           </div>
         )}
       </div>
@@ -122,9 +122,9 @@ const PlacesAutocomplete = ({...props}) => {
       )}
 
       {selectedPlace && (
-        <div className="p-4 w-[250px] bg-blue-50 rounded-lg">
-          <h3 className="font-semibold text-blue-800 mb-2">Selected Place:</h3>
-          <p className="text-blue-700">
+        <div className="p-4 w-[250px] bg-primary-foreground rounded-lg">
+          <h3 className="font-semibold text-black mb-2">Selected Place:</h3>
+          <p className="text-black">
             {selectedPlace.placePrediction?.text?.text}
           </p>
         </div>
