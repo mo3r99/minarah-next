@@ -12,7 +12,7 @@ import { searchPlaces } from "@/lib/services/location/searchPlaces";
 import { getPlaceDetails } from "@/lib/services/location/getPlaceDetails";
 import { LocationContext } from "@/lib/context/locationContext";
 
-const PlacesAutocomplete = () => {
+const PlacesAutocomplete = ({...props}) => {
   const [input, setInput] = useState<HTMLInputElement["value"]>("");
   const [predictions, setPredictions] = useState<
     GooglePlacesAutocompleteResponse["suggestions"] | []
@@ -75,7 +75,7 @@ const PlacesAutocomplete = () => {
   };
 
   return (
-    <div>
+    <div {...props}>
       <div className="relative">
         {!selectedPlace && (
           <Input
