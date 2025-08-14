@@ -10,7 +10,7 @@ import {
   useEffect,
 } from "react";
 import { LocationContext } from "./locationContext";
-import { prayerTimesApi } from "../services/calculations/prayerTimesApi";
+import { prayerTimesApi } from "@/lib/api/prayerTimes/prayerTimesApi";
 import { PrayerStartTimes } from "@/types";
 
 type prayerTimesContextType = {
