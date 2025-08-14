@@ -22,10 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${figTree.variable} antialiased`}>
+      <body className={`${figTree.variable} font-(family-name:--font-figtree) antialiased`}>
         <Providers>
           <Header />
-          <div className="md:ml-20">
+          <div className="md:ml-20 px-8 mt-2">
             {children}
           </div>
           <NavMenu />
