@@ -1,4 +1,4 @@
-import { Preferences } from "@/types";
+import { Mosques, Preferences } from "@/types";
 
 function deepMergePreferences(
   defaults: Preferences,
@@ -48,10 +48,12 @@ function isValidPreferences(obj: Preferences): obj is Preferences {
 
 class PreferencesService {
   private readonly storageKey: string;
+  private readonly mosqueStorageKey: string;
   private readonly defaults: Preferences;
 
   constructor() {
     this.storageKey = "minarah-preferences";
+    this.mosqueStorageKey = "mosque-data";
     this.defaults = {
       calculationMethod: "ISNA",
       timeFormat: "12h",
@@ -101,7 +103,7 @@ class PreferencesService {
 
   savePreferences(
     preferences: Partial<Preferences>,
-    isDefault = false
+    isDefault = false,
   ): Preferences {
     try {
       const current = isDefault ? this.defaults : this.getPreferences();
@@ -137,6 +139,23 @@ class PreferencesService {
     } catch (err) {
       console.warn(err);
       throw new Error("Unable to set default key in preferences!")
+    }
+  }
+
+  saveMosqueData(mosqueData: Mosques): boolean {
+    try {
+      const stored = localStorage.getItem(this.mosqueStorageKey);
+      if (!stored) {
+        localStorage.setItem(this.mosqueStorageKey, JSON.stringify(mosqueData));
+      } else {
+        const oldData: Mosques = JSON.parse(stored);
+        const updated: Mosques = mosqueData.concat(oldData);
+        localStorage.setItem(this.mosqueStorageKey, JSON.stringify(updated));
+      }
+      return true;
+    } catch (error) {
+      console.error("Error saving mosque data:", error);
+      return false;
     }
   }
 
