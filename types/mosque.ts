@@ -15,6 +15,7 @@ export interface MosqueContact {
   phone?: string;
   email?: string;
   website?: string;
+  emasjidLive?: string;
 }
 
 export interface Mosque {
@@ -34,11 +35,11 @@ export interface Mosque {
   lastUpdated: string;
 }
 
+export type Mosques = Array<Mosque>;
+
 export interface MosqueApiResponse {
   mosques: Mosques;
   total: number;
   page: number;
   limit: number;
 }
-
-export type Mosques = Array<Mosque>;
