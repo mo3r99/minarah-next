@@ -145,13 +145,8 @@ class PreferencesService {
   saveMosqueData(mosqueData: Mosques): boolean {
     try {
       const stored = localStorage.getItem(this.mosqueStorageKey);
-      if (!stored) {
-        localStorage.setItem(this.mosqueStorageKey, JSON.stringify(mosqueData));
-      } else {
-        const oldData: Mosques = JSON.parse(stored);
-        const updated: Mosques = mosqueData.concat(oldData);
-        localStorage.setItem(this.mosqueStorageKey, JSON.stringify(updated));
-      }
+      localStorage.setItem(this.mosqueStorageKey, JSON.stringify(mosqueData));
+      
       return true;
     } catch (error) {
       console.error("Error saving mosque data:", error);
