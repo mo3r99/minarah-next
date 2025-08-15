@@ -144,7 +144,6 @@ class PreferencesService {
 
   saveMosqueData(mosqueData: Mosques): boolean {
     try {
-      const stored = localStorage.getItem(this.mosqueStorageKey);
       localStorage.setItem(this.mosqueStorageKey, JSON.stringify(mosqueData));
       
       return true;

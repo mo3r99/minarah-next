@@ -11,7 +11,7 @@ import {
 } from "react";
 import { LocationContext } from "./locationContext";
 import { prayerTimesApi } from "@/lib/api/prayerTimes/prayerTimesApi";
-import { MosqueApiResponse, Mosques, PrayerStartTimes } from "@/types";
+import { Mosques, PrayerStartTimes } from "@/types";
 import { jamaahTimesApi } from "../api/prayerTimes/jamaahTimesApi";
 
 type prayerTimesContextType = {

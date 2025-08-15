@@ -64,10 +64,6 @@ export function getDistanceFromLatLonInKm(
   return 2 * r * Math.asin(Math.sqrt(a));
 }
 
-function deg2rad(deg: number) {
-  return deg * (Math.PI / 180);
-}
-
 import packageJSON from '@/package.json';
 
 export const getAppVersion = () => packageJSON.version;
