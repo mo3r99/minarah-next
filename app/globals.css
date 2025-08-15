@@ -3,6 +3,20 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-manarah-50: oklch(94.74% 0.076 178.47);
+  --color-manarah-100: oklch(89.27% 0.163 178.17);
+  --color-manarah-200: oklch(81.74% 0.149 178.4);
+  --color-manarah-300: oklch(73.43% 0.134 177.98);
+  --color-manarah-400: oklch(65.51% 0.12 178.24);
+  --color-manarah-500: oklch(56.42% 0.103 178.3);
+  --color-manarah-600: oklch(47.9% 0.087 178.78);
+  --color-manarah-700: oklch(39.6% 0.072 178.58);
+  --color-manarah-800: oklch(31.21% 0.057 178.36);
+  --color-manarah-900: oklch(21.79% 0.04 177.84);
+  --color-manarah-950: oklch(17.13% 0.031 179.37);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -52,8 +66,10 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: #06a891;
+  --primary-lighter: #50cba4;
   --primary-foreground: #e9fffa;
   --secondary: #ffeccc;
+  --secondary-lighter: #fdf3e2;
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
