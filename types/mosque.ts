@@ -33,6 +33,7 @@ export interface Mosque {
   amenities: Array<MosqueAmenity>;
   contact: MosqueContact;
   lastUpdated: string;
+  imageUrl?: string;
 }
 
 export type Mosques = Array<Mosque>;
