@@ -12,7 +12,7 @@ export default function OnboardingSwiper({
   const [emblaRef, emblaApi] = useEmblaCarousel({ watchDrag: false });
 
   return (
-    <div className="w-screen h-screen absolute top-0 left-0 overflow-hidden md:mx-auto md:top-[50%] md:left-[50%] md:translate-x-[-50%] md:translate-y-[-50%] md:my-auto z-[52]">
+    <div className="w-screen h-screen fixed top-0 left-0 overflow-hidden md:mx-auto md:top-[50%] md:left-[50%] md:translate-x-[-50%] md:translate-y-[-50%] md:my-auto z-[52]">
       <div className="embla h-screen bg-slate-50" ref={emblaRef}>
         <div className="embla__container">
           <IntroSlide api={emblaApi} />
