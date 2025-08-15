@@ -43,7 +43,7 @@ export function timeRemainingToSalahAsString(
   return `${timeString.prayer} begins in ${timeString.hours}${timeString.and}${timeString.minutes}`;
 }
 
-function getDistanceFromLatLonInKm(
+export function getDistanceFromLatLonInKm(
   lat1: number,
   lon1: number,
   lat2: number,
@@ -67,3 +67,7 @@ function getDistanceFromLatLonInKm(
 function deg2rad(deg: number) {
   return deg * (Math.PI / 180);
 }
+
+import packageJSON from '@/package.json';
+
+export const getAppVersion = () => packageJSON.version;
