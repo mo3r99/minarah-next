@@ -13,7 +13,7 @@ export default function NextSlideBtn({
 }: {
   disabled: boolean | undefined;
   props?: ComponentProps<"button"> | undefined;
-  className?: string,
+  className?: string;
   emblaApi: EmblaCarouselType | undefined;
 }) {
   const scrollNext = useCallback(() => {
@@ -26,6 +26,9 @@ export default function NextSlideBtn({
       className={className}
       disabled={typeof disabled != "undefined" ? disabled : false}
       onClick={scrollNext}
+      style={{
+        bottom: "calc(env(safe-area-inset-bottom) + 3rem)",
+      }}
     >
       Continue
       <ArrowRight />
