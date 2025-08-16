@@ -69,16 +69,16 @@ export default function SettingsPage() {
 
       <div className="mb-24 mt-8 max-w-xl text-center">
         <p className="text-sm font-light">
-          Minrah v{getAppVersion()}
+          Minrah v{getAppVersion()} {process.env.BUILD_ID}
         </p>
-        <p className="text-sm font-light">
+        {/* <p className="text-sm font-light">
           Brought to you by{" "}
           <Link className="text-blue-600" href="https://www.almasjid.co.uk/">
             Al Masjid
           </Link>
-        </p>
+        </p> */}
         <p className="text-sm font-light mt-2">
-          © 2025 Al Masjid SCIO 2015-2025. All rights reserved.
+          © 2025 Muhammad Rauf. All rights reserved.
         </p>
       </div>
     </>
