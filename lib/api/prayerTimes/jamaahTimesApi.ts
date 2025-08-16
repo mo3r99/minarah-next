@@ -66,7 +66,7 @@ const houghEndHall: Mosque = {
 };
 
 const didsburyMosque: Mosque = {
-  id: "2",
+  id: "3",
   name: "Didsbury Central Mosque",
   address: {
     name: "271",
