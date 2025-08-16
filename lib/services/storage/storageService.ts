@@ -153,6 +153,21 @@ class PreferencesService {
     }
   }
 
+  getMosqueData():Mosques|undefined {
+    try {
+      const stored = localStorage.getItem(this.mosqueStorageKey);
+
+      if (stored) {
+        return JSON.parse(stored);
+      } 
+      else {
+        return undefined
+      }
+    } catch (err) {
+      console.warn(err)
+      return undefined
+    }
+  }
   // saveLocation(location: Location) {
   //   console.log('updating location to ', location)
   //   try {

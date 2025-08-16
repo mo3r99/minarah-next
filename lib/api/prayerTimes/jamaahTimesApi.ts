@@ -28,9 +28,14 @@ const masjidNoor: Mosque = {
     MosqueAmenity.PARKING,
     MosqueAmenity.WHEELCHAIR_ACCESS,
   ],
-  contact: { phone: "0161 227 8687", website: "http://www.masjidenoor.com/" },
+  contact: {
+    phone: "0161 227 8687",
+    website: "http://www.masjidenoor.com/",
+    emasjidLive: "https://emasjidlive.co.uk/listen/masjidenoor_manchester",
+  },
   lastUpdated: "2025-06-12 12:43",
-  imageUrl: 'https://www.genuki.org.uk/sites/default/files/styles/max_650x650/public/media/images/LAN/churches/Stretford/jame.jpg?itok=onPAkvEp',
+  imageUrl:
+    "https://www.genuki.org.uk/sites/default/files/styles/max_650x650/public/media/images/LAN/churches/Stretford/jame.jpg?itok=onPAkvEp",
 };
 
 const houghEndHall: Mosque = {
@@ -59,10 +64,12 @@ const houghEndHall: Mosque = {
     MosqueAmenity.ABLUTION_FACILITIES,
     MosqueAmenity.PARKING,
     MosqueAmenity.WOMENS_SECTION,
+    MosqueAmenity.WHEELCHAIR_ACCESS,
   ],
   contact: { phone: "07930 161072" },
   lastUpdated: "2025-06-12 12:46",
-  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Hough_End_Hall.jpg'
+  imageUrl:
+    "https://upload.wikimedia.org/wikipedia/commons/a/a0/Hough_End_Hall.jpg",
 };
 
 const didsburyMosque: Mosque = {
@@ -98,7 +105,8 @@ const didsburyMosque: Mosque = {
     website: "http://www.didsburymosque.com/",
   },
   lastUpdated: "2025-06-12 12:48",
-  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/5d/Didsbury_mosque.jpg',
+  imageUrl:
+    "https://upload.wikimedia.org/wikipedia/commons/5/5d/Didsbury_mosque.jpg",
 };
 
 const data: Mosques = [masjidNoor, houghEndHall, didsburyMosque];
@@ -125,6 +133,11 @@ class JamaahTimesAPI {
 
     storageService.saveMosqueData(dummyData.mosques);
     return dummyData;
+  }
+
+  async getMosqueData(id:number):Promise<Mosque | undefined> {
+    await new Promise(resolve => setTimeout(resolve, Math.random()*1000));
+    return dummyData.mosques.find(mosque => parseInt(mosque.id) == id);
   }
 
   async getMonthlyTimes() {

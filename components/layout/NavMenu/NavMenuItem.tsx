@@ -18,7 +18,7 @@ export default function NavMenuItem({ icon }: { icon: Icons }) {
   const pathname = usePathname();
 
   let iconElement: ReactElement<LucideIcon>, iconText: string;
-  let active = pathname.substring(1) === icon;
+  let active = pathname.substring(1).includes(icon);
 
   switch (icon) {
     case "home":
