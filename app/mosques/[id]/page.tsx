@@ -2,15 +2,15 @@ import MosquePage from "@/components/mosques/MosquePage/MosquePage";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
-export async function generateStaticParams() {
-  let returnArr: { id: string }[] = [{ id: "1" }];
+// export async function generateStaticParams() {
+// //   let returnArr: { id: string }[] = [{ id: "1" }];
 
-  for (let i: number = 2; i < 1000; i++) {
-    returnArr = returnArr.concat([{ id: `${i}` }]);
-  }
+// //   for (let i: number = 2; i < 4; i++) {
+// //     returnArr = returnArr.concat([{ id: `${i}` }]);
+// //   }
 
-  return returnArr;
-}
+//   return [{id: '1'}, {id: '2'}, {id: '3'}];
+// }
 
 export default async function page({
   params,
@@ -29,4 +29,4 @@ export default async function page({
   );
 }
 
-export const dynamic = "force-static";
+// export const dynamic = "force-static";

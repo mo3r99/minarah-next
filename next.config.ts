@@ -4,7 +4,7 @@ import packageJson from '@/package.json';
 
 const nextConfig: NextConfig = {
   /* config options here */
-  output: 'export',
+  // output: 'export',
   images: { unoptimized: true },
   generateBuildId: async () => {
     // Use package version + timestamp
