@@ -46,7 +46,7 @@ export default function NavMenuItem({ icon }: { icon: Icons }) {
         active ? "text-black" : "text-gray-500"
       }`}
     >
-      <Link href={icon == 'home' ? '/' : icon} className="flex flex-col items-center justify-center">
+      <Link href={icon == 'home' ? '/' : `/${icon}`} className="flex flex-col items-center justify-center">
         {iconElement}
         <span className={`text-xs ${active ? "text-black font-medium" : "text-gray-500"}`}>
           {iconText}
