@@ -13,7 +13,7 @@ export default function IntroSlide({api}:{api: EmblaCarouselType | undefined}) {
       <p className="text-xl text-gray-600">
         Your local mosque Salah times, all in one place.
       </p>
-      <NextSlideBtn className={'absolute bottom-8'} emblaApi={api} disabled={false} />
+      <NextSlideBtn className={'fixed bottom-8'} emblaApi={api} disabled={false} />
     </div>
   );
 }

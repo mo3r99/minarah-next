@@ -47,7 +47,7 @@ export default function LocationSlide({
         <PlacesAutocomplete />
       </div>
       <NextSlideBtn
-        className={"absolute bottom-8"}
+        className={"fixed bottom-8"}
         emblaApi={api}
         disabled={continueDisabled}
       />

@@ -14,7 +14,7 @@ export default function EndSlide({setComplete}:{setComplete: MouseEventHandler<H
       <p className="text-xl text-gray-600">
         You can now view local Salah times in your area.
       </p>
-      <Button className={'absolute bottom-8'} onClick={setComplete}><Check />Complete</Button>
+      <Button className={'fixed bottom-8'} onClick={setComplete}><Check />Complete</Button>
     </div>
   );
 }
