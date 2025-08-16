@@ -5,7 +5,7 @@ export default function NavMenu() {
     <nav
       className="fixed bottom-0 left-0 w-screen
         md:fixed md:top-0 md:left-0 md:h-screen md:w-20
-        backdrop-blur-md
+        backdrop-blur-xl
         border-t md:border-t-0 md:border-r border-gray-200 
         font-[family-name:var(--font-figtree)]
         z-50"
