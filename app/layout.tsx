@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={`${figTree.variable} font-(family-name:--font-figtree) antialiased`}>
         <Providers>
           <Header />
-          <div className="md:ml-20 px-8 mt-2">
+          <div className="md:ml-20 px-8 mt-2 pb-24 md:pb-8">
             {children}
           </div>
           <NavMenu />
